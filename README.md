@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+In React.js, there are two types of components: functional components and class components. Let's explore the differences between them:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Functional Components:
 
-## Available Scripts
+Functional components are defined as JavaScript functions, whereas class components are defined as ES6 classes that extend the React.Component class.
+Functional components are simpler and easier to read and write compared to class components.
+They are stateless, meaning they do not have their own internal state and rely on props passed from parent components.
 
-In the project directory, you can run:
 
-### `npm start`
+Class Components:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Class components are more feature-rich and allow for more complex logic and functionality.
+They have their own internal state, managed through the this.state object and updated using this.setState().
+Class components have lifecycle methods such as componentDidMount, componentDidUpdate, and componentWillUnmount, which allow you to control the component's behavior at different stages of its lifecycle.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ example of functional component
+import React from 'react';
 
-### `npm test`
+const FunctionalComponent = (props) => {
+  return (
+    <div>
+      <h1>Hello, {props.name}!</h1>
+      <p>This is a functional component.</p>
+    </div>
+  );
+};
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+export default FunctionalComponent;
 
-### `npm run build`
+example of class componenet
+import React, { Component } from 'react';
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+class ClassComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  componentDidMount() {
+    console.log('Component mounted.');
+  }
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  componentDidUpdate() {
+    console.log('Component updated.');
+  }
 
-### `npm run eject`
+  componentWillUnmount() {
+    console.log('Component will unmount.');
+  }
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  incrementCount() {
+    this.setState((prevState) => ({ count: prevState.count + 1 }));
+  }
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  render() {
+    return (
+      <div>
+        <h1>Count: {this.state.count}</h1>
+        <button onClick={() => this.incrementCount()}>Increment</button>
+      </div>
+    );
+  }
+}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+export default ClassComponent;
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+In the examples above, the FunctionalComponent is a stateless functional component that accepts a name prop and displays a greeting. On the other hand, the ClassComponent is a class component that manages its own state (count) and provides a button to increment the count. It also demonstrates the use of lifecycle methods such as componentDidMount, componentDidUpdate, and componentWillUnmount.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+react-dom and react-router-dom are two different packages that serve different purposes in a React application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+react-dom:
 
-### Deployment
+react-dom is a package that provides the necessary methods and components for rendering React components to the DOM (Document Object Model).
+It includes methods like render(), hydrate(), and unmountComponentAtNode() that are used to render and manipulate React components in the browser.
+It is primarily responsible for rendering the root React component and managing the updates to the component tree.
+react-router-dom:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+react-router-dom is a package specifically designed for routing in web applications built with React.
+It builds on top of the core react-router package and provides additional features and components specific to web development, such as BrowserRouter, Route, Link, and Switch.
+It allows you to define routes, handle navigation, and render specific components based on the current URL or route.
+react-router-dom is commonly used in React applications that need to implement client-side routing and navigation.
+In summary, react-dom is responsible for rendering React components to the DOM, while react-router-dom is used for handling routing and navigation in web applications built with React. They serve different purposes but are often used together in a React web application to render and navigate between different components.
